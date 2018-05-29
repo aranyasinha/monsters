@@ -34,39 +34,40 @@ Follow the indentation/whitespace style shown below. Do not use tabs, use 4-spac
 #include <SDL2/SDL.h>
 
 // finally, monsters includes
-#include "include/monster.h"
 #include "include/battle.h"
+#include "include/monster.h"
 
 // each major module is separated
 #include "include/game.h"
 
-namespace Example {
+    namespace Example {
 
-// Namespace contents are not indented
+  // Namespace contents are not indented
 
-// Declare globals at the top
-int g_foo{}; // {} can be used to initialize types as 0, false, or nullptr
-char* g_some_pointer{}; // Pointer * and reference & stick to the type name, and make sure to initialize as nullptr!
+  // Declare globals at the top
+  int g_foo{}; // {} can be used to initialize types as 0, false, or nullptr
+  char *g_some_pointer{}; // Pointer * and reference & stick to the type name,
+                          // and make sure to initialize as nullptr!
 
-/// A colorful enum.
-enum SomeEnum {
+  /// A colorful enum.
+  enum SomeEnum {
     ColorRed,   ///< The color of fire.
     ColorGreen, ///< The color of grass.
     ColorBlue,  ///< Not actually the color of water.
-};
+  };
 
-/**
- * Very important struct that does a lot of stuff.
- * Note that the asterisks are indented by one space to align to the first line.
- */
-struct Position {
+  /**
+   * Very important struct that does a lot of stuff.
+   * Note that the asterisks are indented by one space to align to the first
+   * line.
+   */
+  struct Position {
     int x{}, y{}; // Intitialize member variables!
-};
+  };
 
-// Use "typename" rather than "class" here
-template <typename T>
-void FooBar() {
-    const std::string some_string{ "prefer uniform initialization" };
+  // Use "typename" rather than "class" here
+  template <typename T> void FooBar() {
+    const std::string some_string{"prefer uniform initialization"};
 
     int some_array[]{
         5,
@@ -76,45 +77,42 @@ void FooBar() {
     };
 
     if (note == the_space_after_the_if) {
-        CallAfunction();
+      CallAfunction();
     } else {
-        // Use a space after the // when commenting
+      // Use a space after the // when commenting
     }
 
     // Place a single space after the for loop semicolons, prefer pre-increment
     for (int i{}; i != 25; ++i) {
-        // This is how we write loops
+      // This is how we write loops
     }
 
-    DoStuff(this, function, call, takes, up, multiple,
-            lines, like, this);
+    DoStuff(this, function, call, takes, up, multiple, lines, like, this);
 
-    if (this || condition_takes_up_multiple &&
-        lines && like && this || everything ||
-        alright || then) {
+    if (this || condition_takes_up_multiple && lines && like && this ||
+        everything || alright || then) {
 
-        // Leave a blank space before the if block body if the condition was continued across
-        // several lines.
+      // Leave a blank space before the if block body if the condition was
+      // continued across several lines.
     }
 
     switch (var) {
     // No indentation for case label
     case 1: {
-        int case_var{ var + 3 };
-        DoSomething(case_var);
-        break;
+      int case_var{var + 3};
+      DoSomething(case_var);
+      break;
     }
     case 3:
-        DoSomething(var);
-        return;
+      DoSomething(var);
+      return;
 
     default:
-        // Yes, even break for the last case
-        break;
+      // Yes, even break for the last case
+      break;
     }
 
     std::vector<T> you_can_declare, a_few, variables, like_this;
-}
-
+  }
 }
 ```

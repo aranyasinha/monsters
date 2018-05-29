@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# The pwd must be the repository folder for the script to work
+# The pwd must be the repository folder (ie; monsters) for the script to work
 
 set -e    # halt on first error
 
@@ -15,6 +15,9 @@ hash=$(git log | head -n1 | cut -d " " -f 2 | cut -c 1-6)
 
 # clear out previous executables
 rm -rf ./binaries/Linux_Binary_*
+
+# Ensure we're formatted everywhere.
+clang-format-6.0 -i $(find source -iname '*.[ch]*' -not -path '*/SDL2/*')
 
 # compile
 $CPP -c ./source/main.cpp -o ./source/main.o $W_FLAGS

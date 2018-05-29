@@ -16,20 +16,20 @@
 #endif
 */
 
-class Menu{
+class Menu {
 public:
-	Menu();
-	~Menu();
+  Menu();
+  ~Menu();
 };
 
-class Battle_Sequence{
+class Battle_Sequence {
 public:
-	Battle_Sequence();
-	~Battle_Sequence();
+  Battle_Sequence();
+  ~Battle_Sequence();
 };
 
-class Championship{
+class Championship {
 public:
-	Championship();
-	~Championship();
+  Championship();
+  ~Championship();
 };

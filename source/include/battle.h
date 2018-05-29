@@ -7,72 +7,75 @@
 
 class Battle {
 private:
-	static Battle* b_instance;
+  static Battle *b_instance;
 
-    Battle() {}
-    Battle(Battle const&) = delete;
-    void operator=(Battle const&) = delete;
+  Battle() {}
+  Battle(Battle const &) = delete;
+  void operator=(Battle const &) = delete;
 
 public:
-	static Battle* getInstance(){
-        if(b_instance == NULL){
-            b_instance = new Battle();
-        }
-        return b_instance;
+  static Battle *getInstance() {
+    if (b_instance == NULL) {
+      b_instance = new Battle();
     }
-	//setters
-    //getters
+    return b_instance;
+  }
+  // setters
+  // getters
 
+  // signed int is used in future consideration of using as a healing move as
+  // well
+  int getPreDmg(Move attack) {
+    // based on level 50, as it's the official level cap in tournaments.
+    // Formulae Sourced from serebii.net/games/damage.shtml
+    return (22 * getAttack() atk * attack.getPower());
+  }
 
-    //signed int is used in future consideration of using as a healing move as well
-    int getPreDmg(Move attack){
-        // based on level 50, as it's the official level cap in tournaments.
-        //Formulae Sourced from serebii.net/games/damage.shtml
-        return(22 * getAttack() atk * attack.getPower());
+  // calculation of stab, ie; a damage calculation constant
+  float getStabBonus(TYPE move) {
+    if ((move == t1) || (move == t2)) {
+      return (1.5);
+    } else {
+      return (1.0);
     }
+  }
 
-    //calculation of stab, ie; a damage calculation constant
-    float getStabBonus(TYPE move){
-        if ((move == t1) || (move == t2)){
-            return(1.5);
-        } else {
-            return(1.0);
-        }
-    }
+  // calculated for defending monster
+  // pre_dmg is calculated using above function (getpre_dmg) and returned here
+  // as argument pre_dmg is calculated for attacking monster dmgcalc is
+  // calculated for defending monster stab is damage constant dependant on
+  // attacking monster's type and attack move's type matching =1.5, else =1
+  int dmgcalc(int pre_dmg, attack move, float st = 1.0) {
+    // check for accuracy here, again using random number generation from 0 to
+    // 50, if < move.accuracy then return(0);
+    // <-- insert code here -->
+    // else the below code gets executed
+    float eff = effect(move.T, t1) * effect(move.T, t2);
+    float dmg = (((pre_dmg / def) / 50) + 2) * st * eff;
+    // Insert a random multiplier (random_number/100) to dmg, where
+    // random_number is [85 to 100]
+    // <-- insert code here -->
+    return (int(dmg));
+  }
+  unsigned int updatehp(int dmgcalc) {
+    hp -= dmgcalc;
+    return (hp);
+  }
 
-    //calculated for defending monster
-    //pre_dmg is calculated using above function (getpre_dmg) and returned here as argument
-    //pre_dmg is calculated for attacking monster
-    //dmgcalc is calculated for defending monster
-    //stab is damage constant dependant on attacking monster's type and attack move's type matching =1.5, else =1
-    int dmgcalc(int pre_dmg, attack move, float st = 1.0){
-        //check for accuracy here, again using random number generation from 0 to 50, if < move.accuracy then return(0);
-        // <-- insert code here -->
-        // else the below code gets executed
-        float eff = effect(move.T, t1) * effect(move.T, t2);
-        float dmg = (((pre_dmg / def) / 50) + 2) * st * eff;
-        //Insert a random multiplier (random_number/100) to dmg, where random_number is [85 to 100]
-        // <-- insert code here -->
-        return(int(dmg));
-    }
-    unsigned int updatehp(int dmgcalc){
-        hp-=dmgcalc;
-        return(hp);
-    }
-
-    //element[0] = base stat, element[1] = effort value, IVs have been maxed
-    bool StatCalc(unsigned int hp[2], unsigned int atk[2], unsigned int def[2], unsigned int spd[2]){
-        //check sum for element[1]
-        int sum = hp[1] + atk[1] + def[1] + spd[1];
+  // element[0] = base stat, element[1] = effort value, IVs have been maxed
+  bool StatCalc(unsigned int hp[2], unsigned int atk[2], unsigned int def[2],
+                unsigned int spd[2]) {
+    // check sum for element[1]
+    int sum = hp[1] + atk[1] + def[1] + spd[1];
 
         if ((hp[0] > 180)||(atk[0] > 180)||(def[0] > 180)||(spd[0] > 180){
-	    return(false);
+      return (false);
         }
 
         //correction required for the EV spread condition
         if (sum > 31){
-            std::cout << "Invalid EVs" << std::endl;
-            return(false);
+      std::cout << "Invalid EVs" << std::endl;
+      return (false);
         }
 
         //for base HP
@@ -93,6 +96,6 @@ public:
 
         m_hp = m_max_hp;
         return(true);
-    }
+  }
 };
 #endif
