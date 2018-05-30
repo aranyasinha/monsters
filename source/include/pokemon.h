@@ -41,8 +41,8 @@ public:
   uint16_t getSpeed() { return (p_speed); }
 
   float getStab(int i) {
-    if ((moveset[i].getType() == (Monster::getType())[0]) ||
-        (moveset[i].getType() == (Monster::getType())[1])) {
+    if ((moveset[i].getType() == (Monster::getType()).first) ||
+        (moveset[i].getType() == (Monster::getType()).second)) {
       return (1.5);
     }
     return (1.0);
