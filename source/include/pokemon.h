@@ -1,3 +1,4 @@
+
 #ifndef POKEMON_H
 #define POKEMON_H
 #include "monster.h"
@@ -47,20 +48,12 @@ public:
     }
     return (1.0);
   }
-  /*
-      float getStab(int i) {
-        std::pair<Type, Type> pkmn = Monster::getType();
-        Type move = moveset[i].getType();
-        if ((move == tmp.first) || (move == tmp.second)) {
-        //if ((moveset[i].getType() == tmp.first) || (moveset[i].getType() ==
-     tmp.second)) { return (1.5);
-        }
-        return (1.0);
-      }
-  */
+
   double getPower(int i) {
     //(2 * (Level=50) / 5 + 2) * AttackStat * AttackPower
     return ((this->getAttack()) * moveset[i].getPower() * 22);
   }
+
+  Move getMove(int i) { return moveset[i]; }
 };
 #endif // POKEMON_H
