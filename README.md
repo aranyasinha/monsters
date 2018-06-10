@@ -33,12 +33,12 @@ If you have questions, concerns, bug reports, etc, please file an issue in the r
 
 ## Getting involved
 Why because it's fun to make games or even just tinker with it to learn about it.
-The contribution would be visible [here](https://github.com/toxicmender/monsters/graphs/contributors) along with everyone else who contributed
+The contribution would be visible [here](https://github.com/toxicmender/monsters/graphs/contributors) along with everyone else who contributed.
 There are a huge number of ways to help out:
 - If you are **not** a programmer:
   - Help in Documentation
   - Assign relevant labels to open issues (only if you have a basic understanding though)
-  - Reporting bugs by creating issues in Issue Tracker (Check contrib.md on how to give useful info)
+  - Reporting bugs by creating issues in Issue Tracker (Check [contrib.md](./contrib.md) on how to give useful info)
 - If you are a programmer:
   - Read contrib.md it's important to go through it once. Most of the source code formatting is done using clang-format which is a step in the compile script.
   - Fork the repository, clone, checkout into a new branch & start working, staging, commiting. Once you think you're ready for a Pull Request `git pull origin master` & `git rebase -i origin master` then merge your current branch with `master` using `git merge <your_branch> --no-ff`. --no-ff flag prevents fastforward as in squashing all your commits into one merge commit which is important for version control history
