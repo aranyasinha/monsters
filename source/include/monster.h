@@ -271,6 +271,24 @@ public:
     m_t = original.getType();
     return *this;
   }
+
+  // Appends instance attributes to binary file
+  bool record() {
+    std::string filename = "Pokemons.data";
+    // Check for exceptions here
+    std::ofstream ofo(filename, std::ios::binary | std::ios::app);
+    if (ofo.is_open()) {
+      ofo.write(reinterpret_cast<char *>(this), sizeof(*this));
+      // ofo.flush();
+      ofo.close();
+      return true;
+    } else {
+      std::cout << "failed to open " << filename << std::endl;
+      return false;
+    }
+  }
+
+  // Monster retrieve(long index){}
 };
 
 #endif

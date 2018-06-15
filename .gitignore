@@ -3,3 +3,6 @@ source/*.o
 
 # Folder containing binary builds
 binaries/
+
+# Swap files
+**/*.swp
