@@ -1,11 +1,11 @@
+#include <fstream>
 #include <iostream>
-
 #include <utility>
 
 #include <array>
 #include <string>
 
-#include "include/pokemon.h"
+#include "include/trainer.h"
 //#include "include/battle.h"
 //#include "include/graphic.h"
 

@@ -229,7 +229,7 @@ public:
 class Monster {
   std::string m_name;
   uint8_t m_base_hp, m_base_attack, m_base_defence, m_base_speed;
-  std::array<Type, 2> m_t; // std::pair <Type, Type> m_t;
+  std::pair<Type, Type> m_t;
 
 public:
   // setters
@@ -238,8 +238,7 @@ public:
   void setAttack(uint8_t attack) { m_base_attack = attack; }
   void setDefence(uint8_t defence) { m_base_defence = defence; }
   void setSpeed(uint8_t speed) { m_base_speed = speed; }
-  void setType(std::array<Type, 2> type) { m_t = type; }
-  // void setType(Type t1, Type t1) { m_t = std::make_pair(t1, t2); }
+  void setType(Type t1, Type t2) { m_t = std::make_pair(t1, t2); }
 
   // getters
   std::string getName() { return (m_name); }
@@ -247,8 +246,7 @@ public:
   uint8_t getAttack() { return (m_base_attack); }
   uint8_t getDefence() { return (m_base_defence); }
   uint8_t getSpeed() { return (m_base_speed); }
-  std::array<Type, 2> getType() { return (m_t); }
-  // std::pair<Type,Type> getType() { return (m_t); }
+  std::pair<Type, Type> getType() { return (m_t); }
 
   Monster() {
     m_name = "MissingNo";
@@ -256,7 +254,7 @@ public:
     m_base_attack = 136;
     m_base_defence = 6;
     m_base_speed = 29;
-    // m_t = std::make_pair(NORMAL, NORMAL);
+    m_t = std::make_pair(NORMAL, NORMAL);
   }
 
   //~Monster();
@@ -273,6 +271,24 @@ public:
     m_t = original.getType();
     return *this;
   }
+
+  // Appends instance attributes to binary file
+  bool record() {
+    std::string filename = "Pokemons.data";
+    // Check for exceptions here
+    std::ofstream ofo(filename, std::ios::binary | std::ios::app);
+    if (ofo.is_open()) {
+      ofo.write(reinterpret_cast<char *>(this), sizeof(*this));
+      // ofo.flush();
+      ofo.close();
+      return true;
+    } else {
+      std::cout << "failed to open " << filename << std::endl;
+      return false;
+    }
+  }
+
+  // Monster retrieve(long index){}
 };
 
 #endif
